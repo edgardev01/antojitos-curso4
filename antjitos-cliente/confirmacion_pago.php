@@ -61,13 +61,33 @@ try {
             color: #333;
             margin-bottom: 20px;
         }
-        .input-field {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 8px;
-            border: 1px solid #ccc;
+        .bank-card {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            position: relative;
+            font-size: 18px;
+        }
+        .bank-card::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 50px;
+            height: 30px;
+            background-color: white; /* Color del logo */
+            border-radius: 4px;
+        }
+        .bank-card .bank-name {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .bank-card .account-number {
             font-size: 16px;
+            margin-top: 10px;
         }
         .next-button {
             background-color: red;
@@ -89,23 +109,12 @@ try {
 <div class="payment-container">
     <h2>Total a Pagar</h2>
     <div class="total-amount" id="total_pago"><?php echo number_format($total, 2); ?> MXN</div>
-
-    <!-- Formulario para ingresar los detalles del banco y cuenta -->
-    <form action="confirmar_pago.php" method="POST">
-        <label for="bank_name">Nombre del Banco:</label>
-        <input type="text" name="bank_name" id="bank_name" class="input-field" placeholder="Ingresa el nombre del banco" required>
-
-        <label for="account_number">Número de Cuenta:</label>
-        <input type="text" name="account_number" id="account_number" class="input-field" placeholder="Ingresa el número de cuenta" required>
-
-        <!-- Campo oculto para enviar el total -->
-        <input type="hidden" name="total" value="<?php echo $total; ?>">
-
-        <!-- Botón para realizar el pago -->
-        <button class="next-button" onclick="redirectToReporteDePago()">Siguiente</button>
-    </form>
+    <div class="bank-card">
+        <div class="bank-name">Banco Ejemplo</div>
+        <div class="account-number">Número de Cuenta: 1234567890</div>
+    </div>
+    <button class="next-button" onclick="redirectToReporteDePago()">Siguiente</button>
 </div>
-
 
 <script>
     // Función para redirigir a la página de Reporte_De_Pago.html
